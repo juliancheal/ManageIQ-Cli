@@ -14,6 +14,7 @@ spec = Gem::Specification.new do |s|
   s.bindir = 'bin'
   s.executables << 'miq'
   s.add_development_dependency('rake')
+  s.add_development_dependency('rspec', '~>3')
 
   s.add_runtime_dependency('gli','2.17.0')
   s.add_runtime_dependency('manageiq-api-client', '~> 0.2.0')

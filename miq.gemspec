@@ -8,7 +8,7 @@ spec = Gem::Specification.new do |s|
   s.homepage = 'http://juliancheal.co.uk'
   s.platform = Gem::Platform::RUBY
   s.summary = 'A description of your project'
-  s.files = `git ls-files`.split("")
+  s.files = `git ls-files -z`.split("\x0")
 
   s.require_paths << 'lib'
   s.bindir = 'bin'

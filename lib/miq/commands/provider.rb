@@ -3,7 +3,8 @@ require 'manageiq-api-client'
 class Provider
 
   def initialize
-    @conf = configuration
+    settings = Settings.new
+    @conf = settings.configuration
 
     miq_host     = @conf.first[:miq_host]
     miq_user     = @conf.first[:miq_user]
@@ -98,24 +99,5 @@ class Provider
                       :vmware_cloud => "ManageIQ::Providers::Vmware::CloudManager",
                       :vmware_infra => "ManageIQ::Providers::Vmware::InfraManager",}
     provider_types[type.to_sym]
-  end
-
-  def configuration(file = "#{Dir.home}/.manageiq-cli-config.yml")
-    config_file = YAML.load_file(file)
-    config = {}
-    return unless config_file
-    symbolise(config_file)
-  end
-
-  # code from https://gist.github.com/Integralist/9503099
-  def symbolise(obj)
-    if obj.is_a? Hash
-      return obj.inject({}) do |hash, (k, v)|
-        hash.tap { |h| h[k.to_sym] = symbolise(v) }
-      end
-    elsif obj.is_a? Array
-      return obj.map { |hash| symbolise(hash) }
-    end
-    obj
   end
 end

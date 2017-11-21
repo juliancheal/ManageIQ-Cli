@@ -27,15 +27,33 @@ class Provider
     userid   = (keys[:userid]   || conf[:credentials][:userid])
     password = (keys[:password] || conf[:credentials][:password])
 
-    @miq.providers.create({
-      :type => type,
-      :provider_region => region,
-      :name => name,
-      :credentials => {
-        :userid => userid,
-        :password => password
-       }
-     })
+    tenant_id    = (keys[:tenant_id]    || conf[:tenant_id])
+    subscription = (keys[:subscription] || conf[:subscription])
+
+    case type
+    when "ManageIQ::Providers::Amazon::CloudManager"
+      @miq.providers.create({
+        :type => type,
+        :provider_region => region,
+        :name => name,
+        :credentials => {
+          :userid => userid,
+          :password => password
+         }
+       })
+     when "ManageIQ::Providers::Azure::CloudManager"
+       @miq.providers.create({
+         :type => type,
+         :provider_region => region,
+         :name => name,
+         :tenant_id => tenant_id,
+         :subscription => subscription,
+         :credentials => {
+           :userid => userid,
+           :password => password
+          }
+        })
+    end
   end
 
   def list

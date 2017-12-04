@@ -2,12 +2,11 @@ require_relative 'commands/provider'
 
 module Miq
   module Cli
-    desc 'Describe provider here'
-    arg_name 'Describe arguments to provider here'
+    desc 'create, list, update, delete'
     command :provider do |provider|
-      provider.arg_name 'args', :multiple
-      provider.desc 'Describe a flag to provider'
 
+      provider.arg_name 'args', :multiple
+      provider.desc 'Create a new provider'
       provider.command :create do |c|
         c.action do |global_options,options,args|
           provider = Provider.new
@@ -15,6 +14,7 @@ module Miq
         end
       end
 
+      provider.desc 'List existing providers'
       provider.command :list do |l|
         l.action do |global_options,options,args|
           provider = Provider.new
@@ -22,6 +22,7 @@ module Miq
         end
       end
 
+      provider.desc 'Update an existing provider'
       provider.command :update do |u|
         u.action do |global_options,options,args|
           provider = Provider.new
@@ -29,6 +30,7 @@ module Miq
         end
       end
 
+      provider.desc 'Delete an existing provider'
       provider.command :delete do |d|
         d.action do |global_options,options,args|
           provider = Provider.new

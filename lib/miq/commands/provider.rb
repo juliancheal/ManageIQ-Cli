@@ -24,9 +24,11 @@ class Provider
     type     = types(type)
     region   = (keys[:region]   || conf[:region])
     name     = (keys[:name]     || conf[:name])
+    hostname = (keys[:hostname] || conf[:hostname])
     userid   = (keys[:userid]   || conf[:credentials][:userid])
     password = (keys[:password] || conf[:credentials][:password])
 
+    verify_ssl   = (keys[:verify_ssl]   || conf[:verify_ssl])
     tenant_id    = (keys[:tenant_id]    || conf[:tenant_id])
     subscription = (keys[:subscription] || conf[:subscription])
 
@@ -53,7 +55,19 @@ class Provider
            :password => password
           }
         })
-    end
+    when "ManageIQ::Providers::Redhat::InfraManager"
+      @miq.providers.create({
+        :type => type,
+        :provider_region => region,
+        :name => name,
+        :hostname => hostname,
+        :verify_ssl => verify_ssl,
+        :credentials => {
+          :userid => userid,
+          :password => password
+         }
+       })
+   end
   end
 
   def list

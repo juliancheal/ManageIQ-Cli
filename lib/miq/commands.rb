@@ -1,4 +1,5 @@
 require_relative 'commands/provider'
+require_relative 'commands/setup'
 
 module Miq
   module Cli
@@ -35,6 +36,17 @@ module Miq
         d.action do |global_options,options,args|
           provider = Provider.new
           provider.delete(args)
+        end
+      end
+    end
+    desc 'setup'
+    command :setup do |setup|
+      setup.arg_name 'args', :multiple
+      setup.desc 'Creates configuration file'
+      setup.command :create do |c|
+        c.action do |global_options,options,args|
+          setup = Setup.new
+          setup.create(args)
         end
       end
     end

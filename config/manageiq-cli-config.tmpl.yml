@@ -1,0 +1,73 @@
+---
+-
+  miq_host:
+  miq_user:
+  miq_password:
+- provider: amazon
+  name:
+  region:
+  credentials:
+    userid:
+    password:
+- provider: azure
+  name:
+  region:
+  tenant_id:
+  subscription:
+  credentials:
+    userid:
+    password:
+- provider: google
+  name:
+  project:
+  credentials:
+    auth_key:
+- provider: kubernetes
+  name:
+  region:
+  credentials:
+    userid:
+    password:
+- provider: microsoft
+  name:
+  region:
+  credentials:
+    userid:
+    password:
+- provider: openshift
+  name:
+  region:
+  credentials:
+    userid:
+    password:
+- provider: openstack_cloud
+  name:
+  region:
+  credentials:
+    userid:
+    password:
+- provider: openstack_infra
+  name:
+  region:
+  credentials:
+    userid:
+    password:
+- provider: redhat
+  name:
+  hostname:
+  verify_ssl:
+  credentials:
+    userid:
+    password:
+- provider: vmware_cloud
+  name:
+  region:
+  credentials:
+    userid:
+    password:
+- provider: vmware_infra
+  name:
+  region:
+  credentials:
+    userid:
+    password:

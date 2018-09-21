@@ -27,7 +27,9 @@ class Provider
     hostname = (keys[:hostname] || conf[:hostname])
     userid   = (keys[:userid]   || conf[:credentials][:userid])
     password = (keys[:password] || conf[:credentials][:password])
+    auth_key = (keys[:auth_key] || conf[:credentials][:auth_key])
 
+    project      = (keys[:project]      || conf[:project])
     verify_ssl   = (keys[:verify_ssl]   || conf[:verify_ssl])
     tenant_id    = (keys[:tenant_id]    || conf[:tenant_id])
     subscription = (keys[:subscription] || conf[:subscription])
@@ -55,6 +57,15 @@ class Provider
            :password => password
           }
         })
+    when "ManageIQ::Providers::Google::CloudManager"
+      @miq.providers.create({
+        :type => type,
+        :name => name,
+        :project => project,
+        :credentials => {
+          :auth_key => auth_key
+        }
+       })
     when "ManageIQ::Providers::Redhat::InfraManager"
       @miq.providers.create({
         :type => type,
